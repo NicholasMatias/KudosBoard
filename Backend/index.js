@@ -3,10 +3,17 @@ const app = express()
 
 app.use(express.json())
 
-const PORT = process.env.PORT||5433
+const PORT = process.env.PORT||3000
 
 
+app.get('/', (req, res) => {
+    res.send(`
+    <html>
+        <h1>Test</h1>
 
+    </html>
+    `)
+})
 
 
 const server = app.listen(PORT,()=>{
