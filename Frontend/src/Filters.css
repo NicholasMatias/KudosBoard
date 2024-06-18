@@ -1,0 +1,23 @@
+.filters_container{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    margin-top: 10px;
+}
+.filters{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.button_text{
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.filter_buttons{
+    margin: 5px;
+}
+

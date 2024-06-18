@@ -1,0 +1,66 @@
+.button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.btn-modal {
+    width: auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+.view-button {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+
+    line-height: 1.4;
+    padding: 14px 28px;
+    border-radius: 3px;
+    width: 70%;
+    overflow-y: auto;
+    max-height: 80%;
+    cursor: default;
+    z-index: 10;
+    background-color: white;
+}
+
+
+
+
+
+
+.modal_button_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.close_modal:hover, .create_board {
+    cursor: pointer;
+}
+
+.create_close_container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 20%;
+}
