@@ -1,12 +1,12 @@
 import './KudosCard.css';
 
-function KudosCard(){
+function KudosCard({title, imgScr, category}){
     return (
         <div className='card_container'>
             <div className='card_content'>
-                <img className='card_image' src="" alt="" />
-                <h3 className='card_title'>Title</h3>
-                <p>Type</p>
+                <img className='card_image' src={imgScr} alt="" />
+                <h3 className='card_title'>{title}</h3>
+                <p>{category}</p>
                 <div className='button_container'>
                     <button>
                         <div id='view_board'>
