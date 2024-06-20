@@ -33,7 +33,7 @@ function KudosCard_List() {
 
     useEffect(() => {
         
-        
+            if(kudosCardsList){
             const options = {
                 method: 'GET',
             }
@@ -42,7 +42,7 @@ function KudosCard_List() {
                 .then(response => setKudosCardsList(response))
                 // .then(console.log(kudosCardsList))
                 .catch(error => console.error("Error fetching the kudos boards:", error))
-        
+            }
     }, [filter,kudosCardsList])
 
 
