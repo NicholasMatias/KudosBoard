@@ -1,6 +1,13 @@
 import './KudosCard.css';
 
-function KudosCard({title, imgSrc, category,author}){
+function KudosCard({title, imgSrc, category,author,cardID,setDelete}){
+
+    const DeleteID = () =>{
+        setDelete(cardID)
+        console.log(cardID)
+    }
+
+
     return (
         <div className='card_container'>
             <div className='card_content'>
@@ -13,7 +20,7 @@ function KudosCard({title, imgSrc, category,author}){
                             View Board
                         </div>
                     </button>
-                    <button>
+                    <button onClick={DeleteID}>
                         <div id='delete_board'>
                             Delete Board
                         </div>
