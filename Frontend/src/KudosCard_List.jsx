@@ -7,15 +7,27 @@ import { useEffect, useState } from 'react';
 
 function KudosCard_List() {
     const [filter, setQuery] = useState("All")
-    const [deleteID, setDeleteID] = useState(0)
+    const [search, setSearch] = useState('')
 
     const handleQuery = (f) => {
         setQuery(f)
     }
 
-    const handleDelete = (f) => {
-        setDeleteID(f)
+    const handleDelete = async(id) => {
+        try{
+            await fetch(`http://localhost:3000/KudoCards/${id}`,{
+                method: 'DELETE'
+            })
+            setKudosCardsList(kudosCardsList.filter((card) => card.id !== id))
+        }
+        catch(error){
+            console.error('Error when deleting board:',error)
+        }
     }
+
+
+
+    
 
     const [kudosCardsList, setKudosCardsList] = useState([])
 
@@ -34,21 +46,7 @@ function KudosCard_List() {
     }, [filter,kudosCardsList])
 
 
-    const addBoard = (boardData) => {
-        const options = {
-            method: 'POST',
-            body: JSON.stringify(
-                boardData
-            )
-
-
-        }
-        fetch(`http://localhost:3000/add`, options)
-            .then(response => response.json())
-            .then(response => setKudosCardsList(...kudosCardsList, ...response))
-            .catch(error => console.error("Error adding kudo board:", error))
-    }
-
+    
 
 
 
