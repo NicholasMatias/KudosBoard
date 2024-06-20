@@ -6,7 +6,6 @@ function Filters({setFilter}){
         e.stopPropagation()
         const currFilter = e.currentTarget.value
         setFilter(currFilter)
-        console.log("Filter:",e.currentTarget.value)
     }
 
 

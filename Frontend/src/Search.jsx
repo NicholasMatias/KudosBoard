@@ -1,9 +1,14 @@
 import './Search.css'
 
-function Search(){
+function Search({setSearch}){
+
+    const setSearchQuery = (e) =>{
+        setSearch(e.target.value)
+    }
+
     return (
         <div className='search_container'>
-            <input id="search_bar" type='search' placeholder='Search boards...' >
+            <input id="search_bar" type='search' onChange={setSearchQuery} placeholder='Search boards...' >
 
             </input>
 

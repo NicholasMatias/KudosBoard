@@ -33,27 +33,52 @@ app.get('/KudoCards/:id', async (req, res) => {
 })
 
 
+app.get('/KudoCards/search/:search', async(req,res)=>{
+    try{
+        const searchQuery = req.params.search
+        const board = await prisma.KudoCard_boards.findMany({
+            where:{
+                title:{
+                    startsWith: searchQuery, mode: 'insensitive'
+                },
+            },
+        })
+        res.status(200).json(board)
+    }
+    catch{
+
+    }
+})
+
+
+
 app.get('/KudoCards', async (req,res) => {
-    const { category } = req.query
+    
+    
+    const {category} = req.query
 
     try{
         let KudoCards
         
-        if (category && category !== 'All'){
+        if (category && category !== 'All' ){
             if (category ==="Recent"){
                 KudoCards = await prisma.KudoCard_boards.findMany({
                     orderBy: { id : 'desc'}
                 })
             }
-            else{
+            else {
                 KudoCards = await prisma.KudoCard_boards.findMany({
                     where: {category: category}
                 })
             }
-
+            
         }
         else{
-            KudoCards = await prisma.KudoCard_boards.findMany()
+            
+                KudoCards = await prisma.KudoCard_boards.findMany()
+            
+            
+
         }
         res.json(KudoCards)
     }

@@ -7,48 +7,57 @@ import { useEffect, useState } from 'react';
 
 function KudosCard_List() {
     const [filter, setQuery] = useState("All")
+    const [kudosCardsList, setKudosCardsList] = useState([])
     const [search, setSearch] = useState('')
 
-    const handleQuery = (f) => {
-        setQuery(f)
+    const handleQuery = (fChoice) => {
+        setQuery(fChoice)
     }
 
-    const handleDelete = async(id) => {
-        try{
-            await fetch(`http://localhost:3000/KudoCards/${id}`,{
+    const handleDelete = async (id) => {
+        try {
+            await fetch(`http://localhost:3000/KudoCards/${id}`, {
                 method: 'DELETE'
             })
             setKudosCardsList(kudosCardsList.filter((card) => card.id !== id))
         }
-        catch(error){
-            console.error('Error when deleting board:',error)
+        catch (error) {
+            console.error('Error when deleting board:', error)
         }
     }
 
 
+    const handleAdd = async () =>{
+        
+    }
 
-    
+    const handleSearch = (searchQuery) => {
+        setSearch(searchQuery)
+    }
 
-    const [kudosCardsList, setKudosCardsList] = useState([])
 
     useEffect(() => {
-        
-            if(kudosCardsList){
-            const options = {
-                method: 'GET',
+        const fetchData = async () => {
+            try {
+                if (search === '') {
+                    const response = await fetch(`http://localhost:3000/KudoCards?category=${filter}`)
+                    const data = await response.json()
+                    setKudosCardsList(data)
+                }
+                else {
+                    const response = await fetch(`http://localhost:3000/KudoCards/search/${search}`)
+                    const data = await response.json()
+                    setKudosCardsList(data)
+                }
+
+
             }
-            fetch(`http://localhost:3000/KudoCards?category=${filter}`, options)
-                .then(response => response.json())
-                .then(response => setKudosCardsList(response))
-                // .then(console.log(kudosCardsList))
-                .catch(error => console.error("Error fetching the kudos boards:", error))
+            catch (error) {
+                console.error('Error fetching the boards:', error)
             }
-    }, [filter,kudosCardsList])
-
-
-    
-
-
+        }
+        fetchData()
+    }, [filter, kudosCardsList, search])
 
 
 
@@ -56,12 +65,14 @@ function KudosCard_List() {
 
     return (
         <>
-            <Search />
+            <Search
+                setSearch={handleSearch}
+            />
             <Filters setFilter={handleQuery} />
             <NewBoard />
             <div className='KudosCard_list_container'>
 
-                {kudosCardsList?.map((kudo, i) => {
+                {(kudosCardsList ? kudosCardsList : []).map((kudo, i) => {
                     return (
                         <KudosCard key={i}
                             title={kudo.title}
