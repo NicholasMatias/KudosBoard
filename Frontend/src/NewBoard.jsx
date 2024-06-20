@@ -27,24 +27,38 @@ export default function NewBoard() {
 
                     <div className="modal_content" onClick={e => e.stopPropagation()} >
                         <div className="form_container">
-                            <div className="form">
-                                <h2>Create New Board</h2>
-                                <input className="title" type="text" placeholder="Enter Title..." />
-                                <select className="category">
+                            <form action="http://localhost:3000/add" method="get">
+                                <label htmlFor="boardTitle">Title:</label>
+                                <input type="text" id="boardTitle" name="boardTitle" />
+
+
+                                <select className="category" name="category" id="category">
                                     <option value="Default">Select One:</option>
                                     <option value="Recent">Recent</option>
                                     <option value="Celebration">Celebration</option>
                                     <option value="Inspiration">Inspiration</option>
-                                    <option value="Thank_you">Thank You</option>
+                                    <option value="Thank You">Thank You</option>
                                 </select>
-                                <input type="text" className="author" placeholder="Enter Author..." />
 
-                            </div>
+                                <label htmlFor="boardAuthor">Author:</label>
+                                <input type="text" id="boardAuthor" name="boardAuthor" />
+
+                                <div className="modal_button_container">
+                                    <div className="create_close_container">
+                                        <input type="button" value="Create Board" onClick={toggleModal}/>
+
+
+                                    </div>
+                                </div>
+                                {/* <button className="close_modal" onClick={toggleModal}>
+                                    X
+                                </button> */}
+                            </form>
 
                         </div>
 
 
-                        <div className="modal_button_container">
+                        {/* <div className="modal_button_container">
                             <div className="create_close_container">
                                 <button className="create_board">
                                     CREATE BOARD
@@ -53,7 +67,7 @@ export default function NewBoard() {
                                     CANCEL
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
 
                     </div>

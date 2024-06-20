@@ -13,9 +13,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model KudoCard{
+model KudoCard_boards{
   id          Int   @id @default(autoincrement())
   title       String
   imgSrc      String
   category    String
+  author      String
 } 

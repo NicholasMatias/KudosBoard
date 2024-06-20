@@ -1,10 +1,10 @@
 import './KudosCard.css';
 
-function KudosCard({title, imgScr, category}){
+function KudosCard({title, imgSrc, category,author}){
     return (
         <div className='card_container'>
             <div className='card_content'>
-                <img className='card_image' src={imgScr} alt="" />
+                <img className='card_image' src={imgSrc} alt="" />
                 <h3 className='card_title'>{title}</h3>
                 <p>{category}</p>
                 <div className='button_container'>

@@ -6,42 +6,53 @@ import NewBoard from './NewBoard';
 import { useEffect, useState } from 'react';
 
 function KudosCard_List() {
+    const [filter, setQuery] = useState("All")
+    
+
+    const handleQuery = (f) =>{
+        setQuery(f)
+    }
+
     const [kudosCardsList, setKudosCardsList] = useState([])
-    const [newBoard, setNewBoard] = useState([])
+
     useEffect(()=>{
         const options = {
             method: 'GET',
         }
-        fetch(`http://localhost:3000/KudoCards`, options)
+        fetch(`http://localhost:3000/KudoCards?category=${filter}`, options)
         .then(response => response.json())
         .then(response => setKudosCardsList(response))
+        // .then(console.log(kudosCardsList))
         .catch(error => console.error("Error fetching the kudos boards:", error)) 
-    },[kudosCardsList])
+    },[filter])
 
 
-
-    // useEffect(({newData})=>{
-    //     const options = {
-    //         method: 'POST',
-    //         body: JSON.stringify(
-                
-    //         )
+    const addBoard = (boardData) => {
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(
+                boardData
+            )
                 
             
-    //     }
-    //     fetch(`http://localhost:3000/add`,options)
-    //         .then(response => response.json())
-    //         .then(response => setKudosCardsList(...kudosCardsList,...response))
-    //         .catch(error => console.error("Error adding kudo board:", error))
+        }
+        fetch(`http://localhost:3000/add`,options)
+            .then(response => response.json())
+            .then(response => setKudosCardsList(...kudosCardsList,...response))
+            .catch(error => console.error("Error adding kudo board:", error))
+    }
 
-    // }, [newBoard])
+
+
+
+        
+
     
-    
+
     return(
-
         <>
         <Search/>
-        <Filters/>
+        <Filters setFilter={handleQuery} />
         <NewBoard/>
         <div className='KudosCard_list_container'>
     
@@ -50,7 +61,7 @@ function KudosCard_List() {
                         <KudosCard key={i}
                             title={kudo.title}
                             category={kudo.category}
-                            imgScr={kudo.imgScr}
+                            imgSrc={kudo.imgSrc}
                         />)
 
                 })}
