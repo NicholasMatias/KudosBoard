@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./NewBoard.css";
 
-export default function NewBoard() {
+export default function NewBoard({addBoard}) {
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
@@ -11,6 +11,33 @@ export default function NewBoard() {
         document.body.classList.add('active-modal')
     } else {
         document.body.classList.remove('active-modal')
+    }
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+        const form = e.target.form
+        const title=form.boardTitle.value
+        const category = form.category.value
+        
+        if(!title){
+            alert('Title is required')
+            return
+        }
+        if(category === 'Default'){
+            alert('Please select a category')
+            return
+        }
+
+        const newBoard ={
+            title,
+            author: form.boardAuthor.value,
+            category
+        }
+
+
+        await addBoard(newBoard)
+
+        toggleModal()
     }
 
     return (
@@ -34,7 +61,6 @@ export default function NewBoard() {
 
                                 <select className="category" name="category" id="category">
                                     <option value="Default">Select One:</option>
-                                    <option value="Recent">Recent</option>
                                     <option value="Celebration">Celebration</option>
                                     <option value="Inspiration">Inspiration</option>
                                     <option value="Thank You">Thank You</option>
@@ -45,14 +71,12 @@ export default function NewBoard() {
 
                                 <div className="modal_button_container">
                                     <div className="create_close_container">
-                                        <input type="button" value="Create Board" onClick={toggleModal}/>
+                                        <input type="button" value="Create Board" onClick={handleSubmit}/>
 
 
                                     </div>
                                 </div>
-                                {/* <button className="close_modal" onClick={toggleModal}>
-                                    X
-                                </button> */}
+                                
                             </form>
 
                         </div>

@@ -10,6 +10,24 @@ function KudosCard_List() {
     const [kudosCardsList, setKudosCardsList] = useState([])
     const [search, setSearch] = useState('')
 
+
+    const addBoard = async (newBoard) => {
+        try{
+            const response = await fetch('http://localhost:3000/KudoCards',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newBoard)
+            })
+            const data = await response.json()
+            setKudosCardsList([...kudosCardsList,...data])
+        }
+        catch(error){
+            console.error('Error when adding a new board:', error)
+        }
+    }
+
     const handleQuery = (fChoice) => {
         setQuery(fChoice)
     }
@@ -69,7 +87,9 @@ function KudosCard_List() {
                 setSearch={handleSearch}
             />
             <Filters setFilter={handleQuery} />
-            <NewBoard />
+            <NewBoard 
+            addBoard={addBoard}
+            />
             <div className='KudosCard_list_container'>
 
                 {(kudosCardsList ? kudosCardsList : []).map((kudo, i) => {
