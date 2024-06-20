@@ -1,20 +1,37 @@
 import './App.css'
 import KudosCard_List from './KudosCard_List'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
 
   return (
-    <>
-      <header id='title_container'>
-        <h1 id='title'>Kudos Board</h1>
-      </header>
-      <main>
-        <KudosCard_List/>
-      </main>
-      <footer>
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            <div>
+                  <header id='title_container'>
+                    <h1 id='title'>Kudos Board</h1>
+                  </header>
+                  <main>
+                    <KudosCard_List />
+                  </main>
+                  <footer>
 
-      </footer>
-    </>
+                  </footer>
+            </div>
+          } />
+          <Route path='/:id' element={
+            <div>
+              <header id="title_container">
+                <h1>Board</h1>
+              </header>
+              <Link to={'/'}>
+                <button>Back to home.</button>
+              </Link>
+            </div>
+          }/>
+        </Routes>
+      </Router>
   )
 }
 

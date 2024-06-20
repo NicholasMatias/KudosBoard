@@ -1,5 +1,5 @@
 import './KudosCard.css';
-
+import { Link } from  'react-router-dom'
 function KudosCard({title, imgSrc, category,author,cardID,setDelete}){
 
     const DeleteID = () =>{
@@ -17,7 +17,9 @@ function KudosCard({title, imgSrc, category,author,cardID,setDelete}){
                 <div className='button_container'>
                     <button>
                         <div id='view_board'>
-                            View Board
+                            <Link to={`/${cardID}`}>  
+                                <button>View Board</button>
+                            </Link>
                         </div>
                     </button>
                     <button onClick={DeleteID}>

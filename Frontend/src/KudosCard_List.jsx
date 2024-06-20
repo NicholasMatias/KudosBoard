@@ -45,9 +45,6 @@ function KudosCard_List() {
     }
 
 
-    const handleAdd = async () =>{
-        
-    }
 
     const handleSearch = (searchQuery) => {
         setSearch(searchQuery)
