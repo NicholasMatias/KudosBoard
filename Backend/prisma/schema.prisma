@@ -13,10 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model KudoCard_boards{
-  id          Int   @id @default(autoincrement())
-  title       String
-  imgSrc      String
-  category    String
-  author      String
-} 
+model KudoCard_boards {
+  id         Int    @id @default(autoincrement())
+  title      String
+  imgSrc     String
+  category   String
+  author     String
+  boardCards Card[]
+}
+
+model Card {
+  id         Int    @id @default(autoincrement())
+  cardTitle  String
+  cardAuthor String
+  cardImg    String
+  cardInfo   String
+
+  KudoCard_boards   KudoCard_boards? @relation(fields: [kudoCard_boardsId], references: [id])
+  
+  kudoCard_boardsId Int?
+}

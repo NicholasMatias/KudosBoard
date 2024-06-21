@@ -1,9 +1,9 @@
 import './KudosCard.css';
 import { Link } from  'react-router-dom'
-function KudosCard({title, imgSrc, category,author,cardID,setDelete}){
+function KudosCard({title, imgSrc, category,author,boardID,setDelete}){
 
     const DeleteID = () =>{
-        setDelete(cardID)
+        setDelete(boardID)
         // console.log(cardID)
     }
 
@@ -17,7 +17,7 @@ function KudosCard({title, imgSrc, category,author,cardID,setDelete}){
                 <div className='button_container'>
                     <button>
                         <div id='view_board'>
-                            <Link to={`/${cardID}`}>  
+                            <Link to={`/${boardID}`}>  
                                 <button>View Board</button>
                             </Link>
                         </div>

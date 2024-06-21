@@ -95,7 +95,7 @@ function KudosCard_List() {
                             title={kudo.title}
                             category={kudo.category}
                             imgSrc={kudo.imgSrc}
-                            cardID={kudo.id}
+                            boardID={kudo.id}
                             setDelete={handleDelete}
                         />)
 

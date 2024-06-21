@@ -28,8 +28,19 @@ app.get('/KudoCards/:id', async (req, res) => {
         res.json(thisBoard)
     }
     else{
-        res.status(404).send("404 Error: Pet not found.")
+        res.status(404).send("404 Error")
     }
+})
+
+app.get('/KudoCards/Cards/:id', async(req,res)=>{
+    const board = parseInt(req.params.id)
+    const thisBoard = await prisma.KudoCard_boards.findUnique({
+        where:{
+            id: board
+        },
+        include:{boardCards: true}
+    })
+    res.json(thisBoard.boardCards)
 })
 
 
@@ -109,6 +120,28 @@ app.post('/KudoCards', async (req, res) => {
         }
     })
     res.json(newBoard)
+})
+
+
+app.post('/KudoCards/Cards/:id', async (req, res) => {
+    const board = parseInt(req.params.id)
+    const thisBoard = await prisma.KudoCard_boards.findUnique({
+        where:{
+            id: board
+        },
+        include:{boardCards: true}
+    })
+    const {cardTitle,cardAuthor,cardImg,cardInfo} = req.body
+    const newCard = await prisma.Card.create({
+        data:{
+            cardTitle,
+            cardAuthor,
+            cardImg,
+            cardInfo,
+            kudoCard_boardsId: board
+        }
+    })
+    res.json(newCard)
 })
 
 
