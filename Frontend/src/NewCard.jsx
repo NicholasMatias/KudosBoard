@@ -62,11 +62,11 @@ export default function NewBoard({ addCard }) {
 
     return (
         <>
-            <div className="button_container">
-                <button onClick={toggleModal} className="btn-modal">
-                    <p className="view-button">Create a New Card</p>
+            {/* <div className="button_container"> */}
+                <button onClick={toggleModal}  className="create_button"> {/* className="btn-modal" */}
+                    Create Card{/* <p className="view-button" ></p>*/}
                 </button>
-            </div>
+            {/* </div> */}
 
 
             {modal && (

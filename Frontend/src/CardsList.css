@@ -6,3 +6,21 @@
     width: 100%;
     justify-content: center;
 }
+
+
+
+.button_container{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.board_page_button{
+    height: 50px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+

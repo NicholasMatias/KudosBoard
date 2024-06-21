@@ -8,6 +8,15 @@
     text-align: center;
 }
 
+.card_container button{
+    cursor: pointer;
+    margin-inline:10px;
+    height: 30px;
+}
+
+.card_container button:hover{
+    background-color:aquamarine;
+}
 
 .card_content{
     margin: 10px;
@@ -16,7 +25,7 @@
 
 .button_container{
     width: 100%;
-    display: flex;
+    display: flex; 
     justify-content: space-between;
 }
 
@@ -36,3 +45,4 @@
     display: flex;
     justify-content: center;
 }
+

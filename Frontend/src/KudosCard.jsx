@@ -17,16 +17,12 @@ function KudosCard({title, imgSrc, category,author,boardID,setDelete}){
                 {author? <h5>By: {author}</h5>:<></>}
 
                 <div className='button_container'>
-                        <div id='view_board'>
                             <Link to={`/${boardID}`}>  
-                                <button>View Board</button>
+                                <button id='view_board'>View</button>
                             </Link>
-                        </div>
                     
-                    <button onClick={DeleteID}>
-                        <div id='delete_board'>
-                            Delete Board
-                        </div>
+                    <button onClick={DeleteID} id='delete_board'>
+                            Delete
                     </button>
                 </div>
             </div>

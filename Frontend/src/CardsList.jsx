@@ -63,14 +63,15 @@ const CardsList = () => {
 
     return (
         <div className='cardList'>
-            <div className='button_container'>
-                <NewCard
-                    addCard={addCard}
-                />
-                <Link to={'/'}>
-                    <button>Back to home.</button>
-                </Link>
-            </div>
+                <div className='button_container'>
+                    <NewCard
+                        addCard={addCard}
+                    />
+                    <Link to={'/'}>
+                        <button className='board_page_button'>Board Page</button>
+                    </Link>
+                </div>
+
 
             {(cards ? cards : []).map((card, i) => {
                 return (

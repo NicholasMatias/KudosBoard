@@ -12,6 +12,11 @@
     justify-content: center;
 }
 
+.create_button{
+    cursor: pointer;
+    height: 50px;
+    margin:10px;
+}
 
 .view-button {
     padding-left: 7px;
