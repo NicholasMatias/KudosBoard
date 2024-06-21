@@ -1,12 +1,25 @@
 .cardList {
     display: flex;
     flex-wrap: wrap;
-    /* margin-bottom: 100px; */
+    margin-bottom: 100px;
     flex-direction: row;
     width: 100%;
     justify-content: center;
 }
 
+#title_container{
+    /* background-color: #282c34; */
+    display: flex;
+    color: black;
+    box-sizing: border-box;
+    border: .2rem rgb(149, 143, 143) solid;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    left:0;
+    top:0;
+    background-color: rgb(146, 210, 238);
+  }
 
 
 .button_container {

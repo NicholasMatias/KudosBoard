@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 const CardsList = () => {
     const { id } = useParams()
     const [cards, setCards] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [boardData,setBoardData] = useState(null)
 
 
     const handleDelete = async (id) => {
@@ -31,7 +33,7 @@ const CardsList = () => {
                 body: JSON.stringify(newCard)
             })
             const data = await response.json()
-            console.log("This is the data being used:", data)
+            // console.log("This is the data being used:", data)
             setCards([...cards, ...data])
         }
         catch (error) {
@@ -42,8 +44,8 @@ const CardsList = () => {
     }
 
 
-    const updatedCardLikes = (id, newLikes) =>{
-        setCards(cards.map(card => card.id === id ? {...card, likes: newLikes}:card))
+    const updatedCardLikes = (id, newLikes) => {
+        setCards(cards.map(card => card.id === id ? { ...card, likes: newLikes } : card))
     }
 
 
@@ -58,26 +60,43 @@ const CardsList = () => {
                 const data = await response.json()
                 // console.log("Data:",data)
                 setCards(data)
+
+
+                const board = await fetch(`http://localhost:3000/KudoCards/${id}`)
+                const newData = await board.json()
+                // console.log(newData)
+                setBoardData(newData)
+                setLoading(false)
             }
             catch (error) {
                 console.error("Could not load board cards:", error)
+                setLoading(false)
             }
         }
         fetchCards()
 
 
-    }, [id])
+    }, [id,cards])
+
+    if(loading){
+        return<div>Loading...</div>
+    }
+
+    
 
     return (
         <div className='cardList'>
-                <div className='button_container'>
-                    <NewCard
-                        addCard={addCard}
-                    />
-                    <Link to={'/'}>
-                        <button className='board_page_button'>Board Page</button>
-                    </Link>
-                </div>
+            <header id="title_container">
+                {boardData ? <h1>{boardData.title}</h1> : <h1>Card Page</h1>}
+            </header>
+            <div className='button_container'>
+                <NewCard
+                    addCard={addCard}
+                />
+                <Link to={'/'}>
+                    <button className='board_page_button'>Board Page</button>
+                </Link>
+            </div>
 
 
             {(cards ? cards : []).map((card, i) => {

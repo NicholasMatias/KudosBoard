@@ -7,14 +7,15 @@ function App() {
 
   return (
     <Router>
-      <div className='container'>
+      <div className='app_container'>
       <Routes>
         <Route path='/' element={
           <div>
             <header id='title_container'>
               <h1 id='title'>Kudos Board</h1>
             </header>
-            <main>
+
+            <main className='content'>
               <KudosCard_List />
             </main>
             <footer id='footer_container'>
@@ -24,9 +25,9 @@ function App() {
         } />
         <Route path='/:id' element={
           <div>
-            <header id="title_container">
+            {/* <header id="title_container">
               <h1>Board</h1>
-            </header>
+            </header> */}
             <CardsList />
             <footer id='footer_container'>
               <h3>CBN, Creations by Nick</h3>
