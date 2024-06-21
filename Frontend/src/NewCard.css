@@ -45,7 +45,7 @@
 
 .modal_content {
 
-    line-height: 1.4;
+    line-height: 1.5;
     padding: 14px 28px;
     border-radius: 3px;
     width: 50%;
@@ -58,18 +58,14 @@
     }
 
 
-
-.title{
-    width: 100%;
-    margin: 20px;
-    height: 30px;
-    
+.label_input{
+    margin-top:30px;
 }
 
-.author{
+
+
+.inputs{
     width: 100%;
-    margin:20px;
-    height: 30px;
 }
 
 
@@ -78,29 +74,15 @@
     justify-content: center;
 }
 
-.form_container h2{
-    text-align: center;
-}
-
-
-
-
-
-
-.modal_button_container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.close_modal:hover, .create_board {
+/* .close_modal:hover, .create_board {
     cursor: pointer;
-}
+} */
 
-.create_close_container{
+/* .create_close_container{
     display: flex;
     justify-content: space-evenly;
     width: 25%;
-}
+} */
 
 
 
@@ -115,4 +97,17 @@
     width: 100px;
     height: 100px;
     cursor: pointer;
+}
+
+#create_card{
+    height: 30px;
+}
+
+#create_card:hover{
+    cursor: pointer;
+    background-color: rgb(146, 210, 238);
+}
+
+#form_title{
+    text-align: center;
 }

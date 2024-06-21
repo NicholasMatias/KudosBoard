@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./NewBoard.css";
 
-export default function NewBoard({addBoard}) {
+export default function NewBoard({ addBoard }) {
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
@@ -13,22 +13,22 @@ export default function NewBoard({addBoard}) {
         document.body.classList.remove('active-modal')
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const form = e.target.form
-        const title=form.boardTitle.value
+        const title = form.boardTitle.value
         const category = form.category.value
-        
-        if(!title){
+
+        if (!title) {
             alert('Title is required')
             return
         }
-        if(category === 'Default'){
+        if (category === 'Default') {
             alert('Please select a category')
             return
         }
 
-        const newBoard ={
+        const newBoard = {
             title,
             author: form.boardAuthor.value,
             category
@@ -44,7 +44,7 @@ export default function NewBoard({addBoard}) {
         <>
             <div className="button_container">
                 <button onClick={toggleModal} className="btn-modal">
-                    <p className="view-button">Create a New Board</p>
+                    <p className="view-button">Create Board</p>
                 </button>
             </div>
 
@@ -55,28 +55,25 @@ export default function NewBoard({addBoard}) {
                     <div className="modal_content" onClick={e => e.stopPropagation()} >
                         <div className="form_container">
                             <form action="http://localhost:3000/add" method="get">
-                                <label htmlFor="boardTitle">Title:</label>
-                                <input type="text" id="boardTitle" name="boardTitle" />
+                                <h1 id="form_title">Create Board</h1>
 
+                                <label className="form_labels" htmlFor="boardTitle">Title:</label>
+                                <input type="text" id="boardTitle" name="boardTitle" placeholder="Enter Board Title..."/>
 
                                 <select className="category" name="category" id="category">
-                                    <option value="Default">Select One:</option>
+                                    <option value="Default">Select Category:</option>
                                     <option value="Celebration">Celebration</option>
                                     <option value="Inspiration">Inspiration</option>
                                     <option value="Thank You">Thank You</option>
                                 </select>
 
-                                <label htmlFor="boardAuthor">Author:</label>
-                                <input type="text" id="boardAuthor" name="boardAuthor" />
+                                <label className="form_labels" htmlFor="boardAuthor">Author:</label>
+                                <input type="text" id="boardAuthor" name="boardAuthor" placeholder="Enter Author (Optional)"/>
 
                                 <div className="modal_button_container">
-                                    <div className="create_close_container">
-                                        <input type="button" value="Create Board" onClick={handleSubmit}/>
-
-
-                                    </div>
+                                        <button   onClick={handleSubmit} id="close_button">Create Board</button>
                                 </div>
-                                
+
                             </form>
 
                         </div>
