@@ -7,6 +7,7 @@ function App() {
 
   return (
     <Router>
+      <div className='container'>
       <Routes>
         <Route path='/' element={
           <div>
@@ -33,6 +34,7 @@ function App() {
           </div>
         } />
       </Routes>
+      </div>
     </Router>
   )
 }

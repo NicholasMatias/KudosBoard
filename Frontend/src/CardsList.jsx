@@ -37,6 +37,13 @@ const CardsList = () => {
         catch (error) {
             console.error('Error when adding a new board:', error)
         }
+
+
+    }
+
+
+    const updatedCardLikes = (id, newLikes) =>{
+        setCards(cards.map(card => card.id === id ? {...card, likes: newLikes}:card))
     }
 
 
@@ -59,7 +66,7 @@ const CardsList = () => {
         fetchCards()
 
 
-    }, [id, cards])
+    }, [id])
 
     return (
         <div className='cardList'>
@@ -82,6 +89,8 @@ const CardsList = () => {
                         cardID={card.id}
                         info={card.cardInfo}
                         setDelete={handleDelete}
+                        likes={card.likes}
+                        updatedCardLikes={updatedCardLikes}
 
                     />
 

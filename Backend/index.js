@@ -176,7 +176,26 @@ app.delete('/KudoCards/:id', async (req, res) => {
     
 })
 
+app.patch('/KudoCards/Cards/:id', async(req,res) =>{
+    try{
+        const cardId = parseInt(req.params.id)
+        console.log('Received the request to increment the likes for the cardID:', cardId)
 
+        const updateCard = await prisma.Card.update({
+            where: {id: cardId},
+            data:{
+                likes:{
+                    increment:1
+                }
+            }
+        })
+        res.status(200).json(updateCard)
+    } 
+    catch(error){
+        console.error("Error updating card like count:", error)
+        res.status(500).json({error:'Error while incrementing likes.'})
+    }
+}) 
 
 
 
