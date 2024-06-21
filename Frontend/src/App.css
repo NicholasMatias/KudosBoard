@@ -7,8 +7,26 @@
   justify-content: center;
   width: 100%;
   margin: 0 auto;
+  left:0;
+  top:0;
+  background-color: rgb(146, 210, 238);
 }
 
 #title{
   font-size: 40px;
+}
+
+#footer_container{
+  display: flex;
+  color: black;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(146, 210, 238);
+  position: fixed;
+  bottom:0;
+  width: 100%;
+  margin: 0 auto;
+  left: 0;
+  box-sizing: border-box;
+  border: .2rem rgb(149, 143, 143) solid;
 }

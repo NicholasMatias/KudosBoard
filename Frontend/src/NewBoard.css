@@ -11,6 +11,10 @@
     display: flex;
     justify-content: center;
 }
+.btn-modal:hover{
+    background-color: rgb(146, 210, 238);
+
+}
 
 
 .view-button {

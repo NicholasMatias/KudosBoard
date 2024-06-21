@@ -20,4 +20,7 @@
 .filter_buttons{
     margin: 5px;
 }
+.filter_buttons:hover{
+    background-color: rgb(146, 210, 238);
 
+}

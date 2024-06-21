@@ -1,4 +1,4 @@
-.cardList{
+.cardList {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
@@ -9,7 +9,7 @@
 
 
 
-.button_container{
+.button_container {
     width: 35%;
     display: flex;
     justify-content: space-between;
@@ -17,10 +17,13 @@
     flex-wrap: wrap;
 }
 
-.board_page_button{
+.board_page_button {
     height: 50px;
     cursor: pointer;
     margin: 10px;
 }
 
+.board_page_button:hover {
+    background-color: rgb(146, 210, 238);
 
+}

@@ -16,8 +16,8 @@ function App() {
                   <main>
                     <KudosCard_List />
                   </main>
-                  <footer>
-
+                  <footer id='footer_container'>
+                    <h3>CBN, Creations by Nick</h3>
                   </footer>
             </div>
           } />
@@ -27,9 +27,7 @@ function App() {
                 <h1>Board</h1>
               </header>
               <CardsList />
-              {/* <Link to={'/'}>
-                <button>Back to home.</button>
-              </Link> */}
+              
             </div>
           }/>
         </Routes>
