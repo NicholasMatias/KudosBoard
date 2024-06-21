@@ -1,0 +1,33 @@
+.card_container{
+    width: 250px;
+    height: 400px;
+    box-sizing: border-box;
+    border: .1rem rgb(149, 143, 143) solid;
+    border-radius: .7rem;
+    margin: 2%;
+    text-align: center;
+}
+
+
+.card_content{
+    margin: 10px;
+    line-height: .3;
+}
+
+.button_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_image{
+    width: 100%;
+    height: 275px;
+    border: .1rem rgb(149, 143, 143) solid;
+    border-radius: .7rem;
+    box-sizing: border-box;
+}
+
+.card_container:hover{
+    box-shadow: 0px 0px 7px rgb(149, 143, 143);
+}

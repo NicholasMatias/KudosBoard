@@ -1,5 +1,6 @@
 import './App.css'
 import KudosCard_List from './KudosCard_List'
+import CardsList from './CardsList'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <header id="title_container">
                 <h1>Board</h1>
               </header>
+              <CardsList />
               <Link to={'/'}>
                 <button>Back to home.</button>
               </Link>

@@ -145,6 +145,22 @@ app.post('/KudoCards/Cards/:id', async (req, res) => {
 })
 
 
+app.delete('/KudoCards/Cards/:id', async (req, res) => {
+    try{
+        const cardId = parseInt(req.params.id)
+
+        const deleteCard = await prisma.Card.delete({
+            where: {id: cardId}
+        })
+        res.status(200).json(deleteCard)
+    }
+    catch(error){
+        console.log("Error deleting cards:", error)
+    }
+    
+})
+
+
 app.delete('/KudoCards/:id', async (req, res) => {
     try{
         const { id } = req.params
