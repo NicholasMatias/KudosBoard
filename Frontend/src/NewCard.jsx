@@ -2,6 +2,10 @@ import { useState } from "react";
 import "./NewCard.css";
 
 export default function NewBoard({ addCard }) {
+    const [imgSrc, setImgSrc] = useState('')
+    const [gifSearch, setGifSearch] = useState('')
+    const [gifs, setGifs] = useState([])
+
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
@@ -13,28 +17,44 @@ export default function NewBoard({ addCard }) {
         document.body.classList.remove('active-modal')
     }
 
+    const handleGifSearch = async(e) => {
+        const query = e.target.value
+        setGifSearch(query)
+        if(query !==''){
+            const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=uumLdOD1R84CdNPUpoWtd5EZuZvxQhVw&q=${query}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
+            const data = await response.json()
+            setGifs(data.data)
+        }
+        else{
+            setGifs([])
+        }
+    }
+
+    const handleGifClick = (gifUrl) =>{
+        setImgSrc(gifUrl)
+        console.log("Gif url:",gifUrl)
+        setGifs([])
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         const form = e.target.form
         const cardTitle = form.cardTitle.value
         const cardInfo = form.cardInfo.value
-        const cardImg=  form.imgSrc.value
+        // const cardImg=  form.imgSrc.value
 
         if (!cardTitle) {
             alert('Title is required')
             return
         }
 
-
         const newCard = {
             cardTitle,
             cardAuthor: form.cardAuthor.value,
             cardInfo,
-            cardImg
-
+            cardImg: imgSrc
         }
-
-
+        console.log(newCard)
         await addCard(newCard)
 
         toggleModal()
@@ -65,7 +85,21 @@ export default function NewBoard({ addCard }) {
                                 <input type="text" id="cardInfo" name="cardInfo"/>
 
                                 <label htmlFor="imgSrc">Search GIFS</label>
-                                <input type="text" id="imgSrc" name="imgSrc"/>
+                                <input type="text" id="imgSrc" name="imgSrc"  value={gifSearch} onChange={handleGifSearch}/>
+
+
+
+
+                                {gifs.length>0 && (
+                                    <div className="gif_container">
+                                        {gifs.map((gif)=>(
+                                            <img src={gif.images.fixed_height.url} alt={gif.title} key={gif.id} onClick={()=> handleGifClick(gif.images.fixed_height.url)} className="gif"/>
+                                        ))}
+                                    </div>
+                                )}
+
+
+                                
 
                                 <div className="modal_button_container">
                                     <div className="create_close_container">

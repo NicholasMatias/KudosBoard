@@ -6,6 +6,8 @@ function Search({setSearch}){
         setSearch(e.target.value)
     }
 
+    
+
     return (
         <div className='search_container'>
             <input id="search_bar" type='search' onChange={setSearchQuery} placeholder='Search boards...' >

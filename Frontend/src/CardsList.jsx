@@ -72,7 +72,7 @@ const CardsList=() =>{
                     <Card key={i}
                     title={card.cardTitle}
                     author={card.cardAuthor}
-                    imgSrc={""}
+                    imgSrc={card.cardImg}
                     cardID={card.id}
                     info={card.cardInfo}
                     setDelete={handleDelete}

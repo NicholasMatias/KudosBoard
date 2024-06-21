@@ -90,3 +90,18 @@
     justify-content: space-evenly;
     width: 25%;
 }
+
+
+
+.gif_container{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    margin-top:10px;
+}
+
+.gif{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
