@@ -17,7 +17,7 @@ function Card({title, imgSrc, info,category,author,cardID,setDelete}){
                 <div className='button_container'>
                     <button onClick={DeleteID}>
                         <div id='delete_board'>
-                            Delete Board
+                            Delete Card
                         </div>
                     </button>
                 </div>

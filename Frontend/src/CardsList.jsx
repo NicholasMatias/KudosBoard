@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import './CardsList.css'
 import { useEffect, useState } from 'react'
 import Card from './Card'
-
+import NewCard from './NewCard'
 
 const CardsList=() =>{
     const { id } = useParams()
@@ -20,7 +20,23 @@ const CardsList=() =>{
             console.error('Error when deleting board:', error)
         }
     }
-
+    const addCard = async (newCard) => {
+        try{
+            const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newCard)
+            })
+            const data = await response.json()
+            console.log("This is the data being used:",data)
+            setCards([...cards,...data])
+        }
+        catch(error){
+            console.error('Error when adding a new board:', error)
+        }
+    }
 
 
     useEffect (() => {
@@ -42,10 +58,15 @@ const CardsList=() =>{
         fetchCards()
 
 
-    }, [id])
+    }, [id,cards])
 
     return (
         <div className='cardList'>
+
+            <NewCard
+            addCard = {addCard}
+            
+            />
             {(cards ? cards : []).map((card,i) => {
                 return (
                     <Card key={i}
