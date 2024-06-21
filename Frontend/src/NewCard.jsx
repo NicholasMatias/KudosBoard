@@ -21,7 +21,7 @@ export default function NewBoard({ addCard }) {
         const query = e.target.value
         setGifSearch(query)
         if(query !==''){
-            const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=uumLdOD1R84CdNPUpoWtd5EZuZvxQhVw&q=${query}&limit=10&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
+            const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=uumLdOD1R84CdNPUpoWtd5EZuZvxQhVw&q=${query}&limit=5&offset=0&rating=g&lang=en&bundle=messaging_non_clips`)
             const data = await response.json()
             setGifs(data.data)
         }
@@ -99,7 +99,7 @@ export default function NewBoard({ addCard }) {
                                 )}
 
 
-                                
+
 
                                 <div className="modal_button_container">
                                     <div className="create_close_container">

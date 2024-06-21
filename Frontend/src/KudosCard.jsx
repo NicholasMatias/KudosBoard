@@ -14,14 +14,15 @@ function KudosCard({title, imgSrc, category,author,boardID,setDelete}){
                 <img className='card_image' src={imgSrc} alt="" />
                 <h3 className='card_title'>{title}</h3>
                 <p>{category}</p>
+                {author? <h5>By: {author}</h5>:<></>}
+
                 <div className='button_container'>
-                    <button>
                         <div id='view_board'>
                             <Link to={`/${boardID}`}>  
                                 <button>View Board</button>
                             </Link>
                         </div>
-                    </button>
+                    
                     <button onClick={DeleteID}>
                         <div id='delete_board'>
                             Delete Board

@@ -3,8 +3,9 @@ import './CardsList.css'
 import { useEffect, useState } from 'react'
 import Card from './Card'
 import NewCard from './NewCard'
+import { Link } from 'react-router-dom'
 
-const CardsList=() =>{
+const CardsList = () => {
     const { id } = useParams()
     const [cards, setCards] = useState([])
 
@@ -21,8 +22,8 @@ const CardsList=() =>{
         }
     }
     const addCard = async (newCard) => {
-        try{
-            const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`,{
+        try {
+            const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,20 +31,20 @@ const CardsList=() =>{
                 body: JSON.stringify(newCard)
             })
             const data = await response.json()
-            console.log("This is the data being used:",data)
-            setCards([...cards,...data])
+            console.log("This is the data being used:", data)
+            setCards([...cards, ...data])
         }
-        catch(error){
+        catch (error) {
             console.error('Error when adding a new board:', error)
         }
     }
 
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchCards = async () => {
             try {
                 const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`)
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error("Network response was not ok. ")
                 }
                 // console.log("Board ID:", id)
@@ -58,32 +59,36 @@ const CardsList=() =>{
         fetchCards()
 
 
-    }, [id,cards])
+    }, [id, cards])
 
     return (
         <div className='cardList'>
+            <div className='button_container'>
+                <NewCard
+                    addCard={addCard}
+                />
+                <Link to={'/'}>
+                    <button>Back to home.</button>
+                </Link>
+            </div>
 
-            <NewCard
-            addCard = {addCard}
-            
-            />
-            {(cards ? cards : []).map((card,i) => {
+            {(cards ? cards : []).map((card, i) => {
                 return (
                     <Card key={i}
-                    title={card.cardTitle}
-                    author={card.cardAuthor}
-                    imgSrc={card.cardImg}
-                    cardID={card.id}
-                    info={card.cardInfo}
-                    setDelete={handleDelete}
-                    
+                        title={card.cardTitle}
+                        author={card.cardAuthor}
+                        imgSrc={card.cardImg}
+                        cardID={card.id}
+                        info={card.cardInfo}
+                        setDelete={handleDelete}
+
                     />
 
                 )
             }
-                    
-                        
-                    
+
+
+
 
             )}
         </div>

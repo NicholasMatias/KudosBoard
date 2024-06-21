@@ -99,6 +99,7 @@ function KudosCard_List() {
                             imgSrc={kudo.imgSrc}
                             boardID={kudo.id}
                             setDelete={handleDelete}
+                            author={kudo.author}
                         />)
 
                 })}

@@ -14,6 +14,7 @@ function Card({title, imgSrc, info,category,author,cardID,setDelete}){
                 <img className='card_image' src={imgSrc} alt="" />
                 <h3 className='card_title'>{title}</h3>
                 <p>{info}</p>
+                {author? <h5>By: {author}</h5>:<></>}
                 <div className='button_container'>
                     <button onClick={DeleteID}>
                         <div id='delete_board'>

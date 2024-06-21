@@ -27,9 +27,9 @@ function App() {
                 <h1>Board</h1>
               </header>
               <CardsList />
-              <Link to={'/'}>
+              {/* <Link to={'/'}>
                 <button>Back to home.</button>
-              </Link>
+              </Link> */}
             </div>
           }/>
         </Routes>
