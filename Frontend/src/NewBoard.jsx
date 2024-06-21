@@ -60,8 +60,9 @@ export default function NewBoard({ addBoard }) {
                                 <label className="form_labels" htmlFor="boardTitle">Title:</label>
                                 <input type="text" id="boardTitle" name="boardTitle" placeholder="Enter Board Title..."/>
 
+                                <label className="form_labels" htmlFor="category">Category:</label>
                                 <select className="category" name="category" id="category">
-                                    <option value="Default">Select Category:</option>
+                                    <option value="Default">Select Category</option>
                                     <option value="Celebration">Celebration</option>
                                     <option value="Inspiration">Inspiration</option>
                                     <option value="Thank You">Thank You</option>
@@ -77,18 +78,6 @@ export default function NewBoard({ addBoard }) {
                             </form>
 
                         </div>
-
-
-                        {/* <div className="modal_button_container">
-                            <div className="create_close_container">
-                                <button className="create_board">
-                                    CREATE BOARD
-                                </button>
-                                <button className="close_modal" onClick={toggleModal}>
-                                    CANCEL
-                                </button>
-                            </div>
-                        </div> */}
 
 
                     </div>
