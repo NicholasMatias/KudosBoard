@@ -86,7 +86,7 @@ const CardsList = () => {
     return (
         <div className='cardList'>
             <header id="title_container">
-                {boardData ? <h1>{boardData.title}'s Cards</h1> : <h1>Card Page</h1>}
+                {boardData ? <h1>"{boardData.title}" Board Cards</h1> : <h1>Card Page</h1>}
             </header>
             <div className='button_container'>
                 <NewCard
