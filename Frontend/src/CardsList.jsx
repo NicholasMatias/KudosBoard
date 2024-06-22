@@ -34,7 +34,6 @@ const CardsList = () => {
                 body: JSON.stringify(newCard)
             })
             const data = await response.json()
-            // setCards([...cards, ...data])
             setCards((prevCards) => [...prevCards,data])
             setTrigger(trigger+1)
             console.log("Trigger",trigger)
@@ -59,15 +58,12 @@ const CardsList = () => {
                 if (!response.ok) {
                     throw new Error("Network response was not ok. ")
                 }
-                // console.log("Board ID:", id)
                 const data = await response.json()
-                // console.log("Data:",data)
                 setCards(data)
 
 
                 const board = await fetch(`http://localhost:3000/KudoCards/${id}`)
                 const newData = await board.json()
-                // console.log(newData)
                 setBoardData(newData)
                 setLoading(false)
             }

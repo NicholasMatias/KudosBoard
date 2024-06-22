@@ -41,7 +41,6 @@ export default function NewBoard({ addCard }) {
         const form = e.target.form
         const cardTitle = form.cardTitle.value
         const cardInfo = form.cardInfo.value
-        // const cardImg=  form.imgSrc.value
 
         if (!cardTitle) {
             alert('Title is required')
@@ -62,11 +61,9 @@ export default function NewBoard({ addCard }) {
 
     return (
         <>
-            {/* <div className="button_container"> */}
-            <button onClick={toggleModal} className="create_button"> {/* className="btn-modal" */}
-                Create Card{/* <p className="view-button" ></p>*/}
+            <button onClick={toggleModal} className="create_button">
+                Create Card
             </button>
-            {/* </div> */}
 
 
             {modal && (
@@ -79,16 +76,16 @@ export default function NewBoard({ addCard }) {
                                 <h1 id="form_title">Create Card</h1>
 
                                 <label className="label_input" htmlFor="cardTitle">Title:</label>
-                                <input   type="text" id="cardTitle" className="inputs"  placeholder="Enter Card Title..." name="cardTitle" />
+                                <input type="text" id="cardTitle" className="inputs" placeholder="Enter Card Title..." name="cardTitle" />
                                 <br></br>
                                 <label className="label_input" htmlFor="cardAuthor">Author:</label>
-                                <input type="text" id="cardAuthor"  className="inputs" placeholder="Enter Author (Optional)" name="cardAuthor" />
+                                <input type="text" id="cardAuthor" className="inputs" placeholder="Enter Author (Optional Sign It)" name="cardAuthor" />
                                 <br></br>
                                 <label className="label_input" htmlFor="cardInfo">Description:</label>
-                                <input type="text" id="cardInfo"  className="inputs" placeholder="Enter Card Description..." name="cardInfo" />
+                                <input type="text" id="cardInfo" className="inputs" placeholder="Enter Card Description..." name="cardInfo" />
                                 <br></br>
                                 <label className="label_input" htmlFor="imgSrc">Search GIFs:</label>
-                                <input type="text" id="imgSrc"  className="inputs" name="imgSrc" placeholder="Search and Click to Select" value={gifSearch} onChange={handleGifSearch} />
+                                <input type="text" id="imgSrc" className="inputs" name="imgSrc" placeholder="Search and Click to Select" value={gifSearch} onChange={handleGifSearch} />
 
 
 
@@ -117,16 +114,7 @@ export default function NewBoard({ addCard }) {
                         </div>
 
 
-                        {/* <div className="modal_button_container">
-                            <div className="create_close_container">
-                                <button className="create_board">
-                                    CREATE BOARD
-                                </button>
-                                <button className="close_modal" onClick={toggleModal}>
-                                    CANCEL
-                                </button>
-                            </div>
-                        </div> */}
+
 
 
                     </div>

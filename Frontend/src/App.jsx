@@ -25,9 +25,7 @@ function App() {
         } />
         <Route path='/:id' element={
           <div>
-            {/* <header id="title_container">
-              <h1>Board</h1>
-            </header> */}
+          
             <CardsList />
             <footer id='footer_container'>
               <h3>CBN, Creations by Nick</h3>

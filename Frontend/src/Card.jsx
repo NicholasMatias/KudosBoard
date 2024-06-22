@@ -4,7 +4,6 @@ function Card({title, imgSrc, info,likes,category,author,cardID,setDelete, updat
 
     const DeleteID = () =>{
         setDelete(cardID)
-        // console.log(cardID)
     }
 
     const handleLike = async() =>{

@@ -4,7 +4,6 @@ function KudosCard({title, imgSrc, category,author,boardID,setDelete}){
 
     const DeleteID = () =>{
         setDelete(boardID)
-        // console.log(cardID)
     }
 
 

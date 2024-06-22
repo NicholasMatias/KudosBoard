@@ -11,10 +11,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 3000
 
-// app.get('/KudoCards', async (req, res) => {
-//     const KudoCards = await prisma.KudoCard_boards.findMany()
-//     res.json(KudoCards)
-// })
+
 
 
 app.get('/KudoCards/:id', async (req, res) => {
