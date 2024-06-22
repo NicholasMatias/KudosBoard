@@ -10,6 +10,7 @@ const CardsList = () => {
     const [cards, setCards] = useState([])
     const [loading, setLoading] = useState(true)
     const [boardData,setBoardData] = useState(null)
+    const [trigger, setTrigger] = useState(0)
 
 
     const handleDelete = async (id) => {
@@ -33,8 +34,10 @@ const CardsList = () => {
                 body: JSON.stringify(newCard)
             })
             const data = await response.json()
-            // console.log("This is the data being used:", data)
-            setCards([...cards, ...data])
+            // setCards([...cards, ...data])
+            setCards((prevCards) => [...prevCards,data])
+            setTrigger(trigger+1)
+            console.log("Trigger",trigger)
         }
         catch (error) {
             console.error('Error when adding a new board:', error)
@@ -76,7 +79,7 @@ const CardsList = () => {
         fetchCards()
 
 
-    }, [id,cards])
+    }, [id])
 
     if(loading){
         return<div>Loading...</div>
@@ -87,7 +90,7 @@ const CardsList = () => {
     return (
         <div className='cardList'>
             <header id="title_container">
-                {boardData ? <h1>{boardData.title}</h1> : <h1>Card Page</h1>}
+                {boardData ? <h1>{boardData.title}'s Cards</h1> : <h1>Card Page</h1>}
             </header>
             <div className='button_container'>
                 <NewCard
