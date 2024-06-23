@@ -11,13 +11,13 @@ export default function NewBoard({ addCard }) {
         setModal(!modal);
     };
 
-    if (modal) {
+    if (modal) { // toggles modal to create a new card. (changes css to make it appear or disappear off the screen)
         document.body.classList.add('active-modal')
     } else {
         document.body.classList.remove('active-modal')
     }
 
-    const handleGifSearch = async (e) => {
+    const handleGifSearch = async (e) => {  // takes in search query and returns 10 gifs based off of that. API call to giphy. 
         const query = e.target.value
         setGifSearch(query)
         if (query !== '') {
@@ -26,29 +26,34 @@ export default function NewBoard({ addCard }) {
             setGifs(data.data)
         }
         else {
-            setGifs([])
+            setGifs([]) // if search empty then no gifs will display. 
         }
     }
 
-    const handleGifClick = (gifUrl) => {
+    const handleGifClick = (gifUrl) => { //sets the url for new card img and sets gifs to []. Will no longer display any gifs within the form as a choice has been made. 
         setImgSrc(gifUrl)
         console.log("Gif url:", gifUrl)
         setGifs([])
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => { // sets the other information for the new card. 
         e.preventDefault()
         const form = e.target.form
         const cardTitle = form.cardTitle.value
         const cardInfo = form.cardInfo.value
 
-        if (!cardTitle) {
+        if (!cardTitle) { // ensures user enters a title for the new card. 
             alert('Title is required')
+            return
+        } 
+
+        if(!cardInfo){  // ensures user enters a description for the new card. 
+            alert('Card description is required.')
             return
         }
 
-        const newCard = {
-            cardTitle,
+        const newCard = {   // dictionary that will be used in api call to make new card. 
+            cardTitle,  
             cardAuthor: form.cardAuthor.value,
             cardInfo,
             cardImg: imgSrc
@@ -56,7 +61,7 @@ export default function NewBoard({ addCard }) {
         console.log(newCard)
         await addCard(newCard)
 
-        toggleModal()
+        toggleModal() // makes the modal turn off after since the user has submitted the form. 
     }
 
     return (
@@ -90,7 +95,7 @@ export default function NewBoard({ addCard }) {
 
 
 
-                                {gifs.length > 0 && (
+                                {gifs.length > 0 && (   // this displays the gifs right below the search input tag. Sets up onClick interaction for each gif as well. 
                                     <div className="gif_container">
                                         {gifs.map((gif) => (
                                             <img src={gif.images.fixed_height.url} alt={gif.title} key={gif.id} onClick={() => handleGifClick(gif.images.fixed_height.url)} className="gif" />

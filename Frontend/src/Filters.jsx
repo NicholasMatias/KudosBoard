@@ -8,6 +8,7 @@ function Filters({setFilter}){
         setFilter(currFilter)
     }
 
+    // sets up the buttons for all the filters. callFilters passes the filter choice up to the api call. 
 
     return(
         <div className='filters_container'>

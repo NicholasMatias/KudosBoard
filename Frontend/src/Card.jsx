@@ -1,12 +1,11 @@
 import './Card.css';
-import { Link } from  'react-router-dom'
 function Card({title, imgSrc, info,likes,category,author,cardID,setDelete, updatedCardLikes}){
 
-    const DeleteID = () =>{
+    const DeleteID = () =>{ // determine which card should be deleted, used the card id. 
         setDelete(cardID)
     }
 
-    const handleLike = async() =>{
+    const handleLike = async() =>{ // makes the call to backend to increment the like count of a specific card. Uses the card id. 
             console.log("Handling like for card id",cardID)
             try{
                 const response = await fetch( `http://localhost:3000/KudoCards/Cards/${cardID}`,
@@ -17,7 +16,6 @@ function Card({title, imgSrc, info,likes,category,author,cardID,setDelete, updat
                 throw new Error('Network response was not ok')
             }
             const updatedCard = await response.json()
-            console.log('Updated card:',updatedCard)
             updatedCardLikes(cardID, updatedCard.likes)
         }
         catch(error){
@@ -35,7 +33,7 @@ function Card({title, imgSrc, info,likes,category,author,cardID,setDelete, updat
                 <p>{info}</p>
                 {author? <h5>By: {author}</h5>:<></>}
                 <div className='button_container'>
-                    <button onClick={DeleteID}>
+                    <button onClick={DeleteID}> 
                         <div id='delete_board'>
                             Delete Card
                         </div>

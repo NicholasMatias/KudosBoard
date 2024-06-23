@@ -13,7 +13,7 @@ function KudosCard_List() {
 
 
     
-    const addBoard = async (newBoard) => {
+    const addBoard = async (newBoard) => { // makes api call to add a board 
         try{
             const response = await fetch('http://localhost:3000/KudoCards',{
                 method: 'POST',
@@ -30,11 +30,11 @@ function KudosCard_List() {
         }
     }
 
-    const handleQuery = (fChoice) => {
+    const handleQuery = (fChoice) => {  // sets search value, used in api call for searching the boards by title. 
         setQuery(fChoice)
     }
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id) => { //  makes api call to delete a board. Uses the board id to determine which board is deleted. 
         try {
             await fetch(`http://localhost:3000/KudoCards/${id}`, {
                 method: 'DELETE'
@@ -48,20 +48,20 @@ function KudosCard_List() {
 
 
 
-    const handleSearch = (searchQuery) => {
+    const handleSearch = (searchQuery) => { // takes the search choice and sets it using useState. Used in api call 
         setSearch(searchQuery)
     }
 
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = async () => { // if the search variable is empty then we do the first api call. Default of filter is All (displays off the boards)
             try {
                 if (search === '') {
                     const response = await fetch(`http://localhost:3000/KudoCards?category=${filter}`)
                     const data = await response.json()
                     setKudosCardsList(data)
                 }
-                else {
+                else {  // if search is not empty, then api call is made to search the boards by title. 
                     const response = await fetch(`http://localhost:3000/KudoCards/search/${search}`)
                     const data = await response.json()
                     setKudosCardsList(data)

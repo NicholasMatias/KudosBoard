@@ -13,7 +13,7 @@ const CardsList = () => {
     const [trigger, setTrigger] = useState(0)
 
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id) => { // makes the api call to delete a card. Card determined by card id. 
         try {
             await fetch(`http://localhost:3000/KudoCards/Cards/${id}`, {
                 method: 'DELETE'
@@ -24,7 +24,7 @@ const CardsList = () => {
             console.error('Error when deleting board:', error)
         }
     }
-    const addCard = async (newCard) => {
+    const addCard = async (newCard) => {    //makes api call to add a card. id is used to determine which board to add the card to. (board id)
         try {
             const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`, {
                 method: 'POST',
@@ -46,13 +46,13 @@ const CardsList = () => {
     }
 
 
-    const updatedCardLikes = (id, newLikes) => {
+    const updatedCardLikes = (id, newLikes) => {    // updates the card like count 
         setCards(cards.map(card => card.id === id ? { ...card, likes: newLikes } : card))
     }
 
 
     useEffect(() => {
-        const fetchCards = async () => {
+        const fetchCards = async () => {    // makes the api call to fetch the cards of a specific board. Uses board id. 
             try {
                 const response = await fetch(`http://localhost:3000/KudoCards/Cards/${id}`)
                 if (!response.ok) {
@@ -62,7 +62,7 @@ const CardsList = () => {
                 setCards(data)
 
 
-                const board = await fetch(`http://localhost:3000/KudoCards/${id}`)
+                const board = await fetch(`http://localhost:3000/KudoCards/${id}`)  // used to get the board title, so that the board title can be displayed on its respective card page. 
                 const newData = await board.json()
                 setBoardData(newData)
                 setLoading(false)
@@ -77,7 +77,8 @@ const CardsList = () => {
 
     }, [id])
 
-    if(loading){
+    if(loading){    //added this to reduce errors. Would attempt to fetch before data was finalized by a previous operation. This ensures that the errors do not populate in the console 
+                    //
         return<div>Loading...</div>
     }
 
@@ -92,13 +93,13 @@ const CardsList = () => {
                 <NewCard
                     addCard={addCard}
                 />
-                <Link to={'/'}>
+                <Link to={'/boards'}>
                     <button className='board_page_button'>Board Page</button>
                 </Link>
             </div>
 
 
-            {(cards ? cards : []).map((card, i) => {
+            {(cards ? cards : []).map((card, i) => { //maps all of the cards 
                 return (
                     <Card key={i}
                         title={card.cardTitle}

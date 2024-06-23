@@ -11,7 +11,9 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 3000
 
-
+/*
+    This will return the kudo board by id.
+*/
 
 
 app.get('/KudoCards/:id', async (req, res) => {
@@ -29,6 +31,10 @@ app.get('/KudoCards/:id', async (req, res) => {
     }
 })
 
+/*
+    This will return the cards that match the kudo board with the id passed in. 
+*/
+
 app.get('/KudoCards/Cards/:id', async(req,res)=>{
     const board = parseInt(req.params.id)
     const thisBoard = await prisma.KudoCard_boards.findUnique({
@@ -39,6 +45,11 @@ app.get('/KudoCards/Cards/:id', async(req,res)=>{
     })
     res.json(thisBoard.boardCards)
 })
+
+/*
+    This is how the user will be able to search. Search works by looking for matching titles
+    with the kudo boards. 
+*/
 
 
 app.get('/KudoCards/search/:search', async(req,res)=>{
@@ -57,6 +68,10 @@ app.get('/KudoCards/search/:search', async(req,res)=>{
 
     }
 })
+
+/*
+    Allows the user to filter the boards by category, most recent, and all. 
+*/
 
 
 
@@ -97,8 +112,9 @@ app.get('/KudoCards', async (req,res) => {
 
 })
 
-// app.get('/KudoCards', async (req,res))
-
+/*
+    Allows the user to make a new board. Uses giphy to randomly generate a gif for the board created. 
+*/
 
 
 app.post('/KudoCards', async (req, res) => {
@@ -118,6 +134,10 @@ app.post('/KudoCards', async (req, res) => {
     })
     res.json(newBoard)
 })
+
+/*
+    Allows the user to create a new card for a specific board. The board is determined by the id. 
+*/
 
 
 app.post('/KudoCards/Cards/:id', async (req, res) => {
@@ -142,6 +162,11 @@ app.post('/KudoCards/Cards/:id', async (req, res) => {
 })
 
 
+/*
+    Allows the user to delete a card by using the card id. 
+*/
+
+
 app.delete('/KudoCards/Cards/:id', async (req, res) => {
     try{
         const cardId = parseInt(req.params.id)
@@ -156,6 +181,10 @@ app.delete('/KudoCards/Cards/:id', async (req, res) => {
     }
     
 })
+
+/*
+    Allows the user to delete a board by using the board id
+*/
 
 
 app.delete('/KudoCards/:id', async (req, res) => {
@@ -173,10 +202,14 @@ app.delete('/KudoCards/:id', async (req, res) => {
     
 })
 
+
+/*
+    Uses patch to update the like count for a card. Card id is needed to detmermine which card like count to increment. 
+*/
+
 app.patch('/KudoCards/Cards/:id', async(req,res) =>{
     try{
         const cardId = parseInt(req.params.id)
-        console.log('Received the request to increment the likes for the cardID:', cardId)
 
         const updateCard = await prisma.Card.update({
             where: {id: cardId},

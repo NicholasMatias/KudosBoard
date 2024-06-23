@@ -7,28 +7,28 @@ export default function NewBoard({ addBoard }) {
         setModal(!modal);
     };
 
-    if (modal) {
+    if (modal) {    // changes the css depending on if the modal variable is toggled 
         document.body.classList.add('active-modal')
     } else {
         document.body.classList.remove('active-modal')
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => { // sets up the dictionary which will passed in the body of the api call. 
         e.preventDefault()
         const form = e.target.form
         const title = form.boardTitle.value
         const category = form.category.value
 
-        if (!title) {
+        if (!title) {   // ensures user enters a title
             alert('Title is required')
             return
         }
-        if (category === 'Default') {
+        if (category === 'Default') {   //ensures the category has been selected
             alert('Please select a category')
             return
         }
 
-        const newBoard = {
+        const newBoard = { //creats the dictionary being used. 
             title,
             author: form.boardAuthor.value,
             category
