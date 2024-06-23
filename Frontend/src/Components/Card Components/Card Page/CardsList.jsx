@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import './CardsList.css'
 import { useEffect, useState } from 'react'
-import Card from './Card'
+import Card from './Card Template/Card'
 import NewCard from './NewCard'
 import { Link } from 'react-router-dom'
 

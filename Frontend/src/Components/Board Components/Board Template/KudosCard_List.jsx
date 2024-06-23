@@ -1,7 +1,7 @@
 import './KudosCard_List.css';
-import KudosCard from './KudosCard';
-import Filters from './Filters';
-import Search from './Search';
+import KudosCard from './Board Page/KudosCard';
+import Filters from '../Filter/Filters';
+import Search from '../Search/Search';
 import NewBoard from './NewBoard';
 import { useEffect, useState } from 'react';
 

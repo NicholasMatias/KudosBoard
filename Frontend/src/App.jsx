@@ -1,6 +1,6 @@
 import './App.css'
-import KudosCard_List from './KudosCard_List'
-import CardsList from './CardsList'
+import KudosCard_List from './Components/Board Components/KudosCard_List'
+import CardsList from './Components/Card Components/CardsList'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
